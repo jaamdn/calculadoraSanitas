@@ -29,9 +29,9 @@ public class RestCalculadoraController {
 	CalculadoraService service;
 
 	@GetMapping
-	public Operador sumar(@RequestParam String operador1,@RequestParam String operador2) {
-		
-		return service.sumar(new Operador("Sumar",new Double(operador1),new Double(operador2),new Double(0)));
+	public Operador sumar(@RequestBody Operador operador) {
+			
+		return service.sumar(new Operador(operador.getOperacion(),new Double(operador.getOperador1()),new Double(operador.getOperador2()),new Double(0)));
 		
 	}
 	
