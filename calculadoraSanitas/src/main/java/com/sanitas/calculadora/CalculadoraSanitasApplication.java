@@ -8,7 +8,6 @@ public class CalculadoraSanitasApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CalculadoraSanitasApplication.class, args);
-		System.out.println("hola");
 	}
 
 }

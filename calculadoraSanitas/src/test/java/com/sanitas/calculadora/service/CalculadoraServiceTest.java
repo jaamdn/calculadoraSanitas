@@ -3,60 +3,80 @@
  */
 package com.sanitas.calculadora.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author dvazquez
  *
  */
-class CalculadoraServiceTest {
+@SpringBootTest
+class CalculadoraServiceTest  {
+	
+	@Autowired
+	CalculadoraService service;
+	
+	
 
 	/**
-	 * Test method for {@link com.sanitas.calculadora.service.CalculadoraService#sumar(com.sanitas.calculadora.model.Operador)}.
+	 * Test Sumar.
 	 */
 	@Test
+	@DisplayName("Test Sumar")
 	void testSumar() {
+		
+		
+		//service.sumar(operacion);
+		//assertTrue(operacion.getResultado());
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link com.sanitas.calculadora.service.CalculadoraService#restar(com.sanitas.calculadora.model.Operador)}.
+	 * Test Restar.
 	 */
 	@Test
+	@DisplayName("Test Restar")
 	void testRestar() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link com.sanitas.calculadora.service.CalculadoraService#multiplicar(com.sanitas.calculadora.model.Operador)}.
+	 * Test Multiplicar.
 	 */
 	@Test
+	@DisplayName("Test Multiplicar")
 	void testMultiplicar() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link com.sanitas.calculadora.service.CalculadoraService#dividir(com.sanitas.calculadora.model.Operador)}.
+	 * Test Dividir.
 	 */
 	@Test
+	@DisplayName("Test Dividir")
 	void testDividir() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link com.sanitas.calculadora.service.CalculadoraService#raiz(com.sanitas.calculadora.model.Operador)}.
+	 * Test Raiz Cuadrada.
 	 */
 	@Test
+	@DisplayName("Test Raiz Cuadrada")
 	void testRaiz() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link com.sanitas.calculadora.service.CalculadoraService#potencia(com.sanitas.calculadora.model.Operador)}.
+	 * Test Potencia.
 	 */
 	@Test
+	@DisplayName("Test Potencia")
 	void testPotencia() {
 		fail("Not yet implemented");
 	}
