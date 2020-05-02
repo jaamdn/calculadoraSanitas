@@ -10,7 +10,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -100,18 +99,18 @@ public class RestCalculadoraController {
 
 	}
 
-	@GetMapping
-	@RequestMapping("/Calculadora/potencia")
-	public ResponseEntity<Operador> potencia(@RequestBody @Valid Operador operador) {
-
-		HttpStatus status;
-
-		Optional<Operador> operadorResponse = service.potencia(operador);
-
-		status = operadorResponse.isPresent() ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-
-		return new ResponseEntity<Operador>(operadorResponse.get(), status);
-
-	}
+//	@GetMapping
+//	@RequestMapping("/Calculadora/potencia")
+//	public ResponseEntity<Operador> potencia(@RequestBody @Valid Operador operador) {
+//
+//		HttpStatus status;
+//
+//		Optional<Operador> operadorResponse = service.potencia(operador);
+//
+//		status = operadorResponse.isPresent() ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+//
+//		return new ResponseEntity<Operador>(operadorResponse.get(), status);
+//
+//	}
 
 }

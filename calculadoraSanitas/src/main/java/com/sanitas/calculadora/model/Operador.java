@@ -1,9 +1,23 @@
 package com.sanitas.calculadora.model;
 
+import java.math.BigDecimal;
+
 public class Operador {
 
-
-
+	//operacion
+	private String operacion;
+	
+	//operador1
+	private BigDecimal operador1;
+	
+	//operador2
+	private BigDecimal operador2;
+	
+	//resultado
+	private BigDecimal resultado;
+	
+	
+	
 
 	/**
 	 * @param operacion
@@ -11,7 +25,7 @@ public class Operador {
 	 * @param operador2
 	 * @param resultado
 	 */
-	public Operador(String operacion, double operador1, double operador2, double resultado) {
+	public Operador(String operacion, BigDecimal operador1, BigDecimal operador2, BigDecimal resultado) {
 		super();
 		this.operacion = operacion;
 		this.operador1 = operador1;
@@ -19,24 +33,6 @@ public class Operador {
 		this.resultado = resultado;
 	}
 
-	//operacion
-	private String operacion;
-	
-	//operador1
-	private double operador1;
-	
-	//operador2
-	private double operador2;
-	
-	//resultado operaciones
-	private double resultado;
-
-	public double getOperador1() {
-		return operador1;
-	}
-	
-	
-	
 	public String getOperacion() {
 		return operacion;
 	}
@@ -45,25 +41,39 @@ public class Operador {
 		this.operacion = operacion;
 	}
 
-	public void setOperador1(double operador1) {
+	public BigDecimal getOperador1() {
+		return operador1;
+	}
+
+	public void setOperador1(BigDecimal operador1) {
 		this.operador1 = operador1;
 	}
 
-	public double getOperador2() {
+	public BigDecimal getOperador2() {
 		return operador2;
 	}
 
-	public void setOperador2(double operador2) {
+	public void setOperador2(BigDecimal operador2) {
 		this.operador2 = operador2;
 	}
 
-	public double getResultado() {
+	public BigDecimal getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(double resultado) {
+	public void setResultado(BigDecimal resultado) {
 		this.resultado = resultado;
 	}
+
+	@Override
+	public String toString() {
+		return "Operador [operacion=" + operacion + ", operador1=" + operador1 + ", operador2=" + operador2
+				+ ", resultado=" + resultado + "]";
+	}
+
+
+
+	
 
 
 }

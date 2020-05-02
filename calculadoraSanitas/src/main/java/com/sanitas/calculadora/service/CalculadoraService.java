@@ -3,6 +3,9 @@
  */
 package com.sanitas.calculadora.service;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -37,7 +40,7 @@ public class CalculadoraService {
 	public Optional<Operador> sumar(Operador op) {
 		
 		op.setOperacion(SUMAR);
-		op.setResultado(op.getOperador1()+op.getOperador2());
+		op.setResultado(op.getOperador1().add(op.getOperador2()));
 		
 		return Optional.ofNullable(op);
 		
@@ -51,7 +54,7 @@ public class CalculadoraService {
 	public Optional<Operador> restar(Operador op) {
 		
 		op.setOperacion(RESTAR);
-		op.setResultado(op.getOperador1()-op.getOperador2());
+		op.setResultado(op.getOperador1().subtract(op.getOperador2()));
 		
 		return Optional.ofNullable(op);
 		
@@ -65,7 +68,7 @@ public class CalculadoraService {
 	public Optional<Operador> multiplicar(Operador op) {
 		
 		op.setOperacion(MULTIPLICAR);
-		op.setResultado(op.getOperador1() * op.getOperador2());
+		op.setResultado(op.getOperador1().multiply(op.getOperador2()));
 		
 		return Optional.ofNullable(op);
 		
@@ -79,7 +82,7 @@ public class CalculadoraService {
 	public Optional<Operador> dividir(Operador op) {
 		
 		op.setOperacion(DIVIDIR);
-		op.setResultado(op.getOperador1() / op.getOperador2());
+		op.setResultado(op.getOperador1().divide(op.getOperador2()));
 		
 		return Optional.ofNullable(op);
 		
@@ -93,24 +96,25 @@ public class CalculadoraService {
 	public Optional<Operador> raiz(Operador op) {
 		
 		op.setOperacion(RAIZ);
-		op.setResultado(Math.sqrt(op.getOperador1()));
+		op.setResultado(new BigDecimal(Math.sqrt(op.getOperador1().doubleValue())));
 		
 		return Optional.ofNullable(op);
 		
 	}
 	
-	/**
-	 * Realiza la operación de potencia.
-	 * @param op
-	 * @return Operador
-	 */
-	public Optional<Operador> potencia(Operador op) {
-		
-		op.setOperacion(POTENCIA);
-		op.setResultado(Math.pow(op.getOperador1(),op.getOperador1()));
-		
-		return Optional.ofNullable(op);
-		
-	}
+//	/**
+//	 * Realiza la operación de potencia.
+//	 * @param op
+//	 * @return Operador
+//	 */
+//	public Optional<Operador> potencia(Operador op) {
+//		
+//		op.setOperacion(POTENCIA);
+//		if (instanceOf(Integer.class) op.getOperador2().intValueExact();
+//		op.setResultado(op.getOperador1().pow(op.getOperador2()));
+//		
+//		return Optional.ofNullable(op);
+//		
+//	}
 
 }

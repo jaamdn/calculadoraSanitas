@@ -4,8 +4,6 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -23,8 +21,6 @@ import com.sanitas.calculadora.model.CustomErrorJson;
  
 @RestController
 public class CustomErrorController implements ErrorController {
- 
-    private static final Logger logger = LoggerFactory.getLogger(CustomErrorController.class);
  
     @Autowired
     private ErrorAttributes errorAttributes;
@@ -47,6 +43,7 @@ public class CustomErrorController implements ErrorController {
  
         return error;
     }
+    
      
     @RequestMapping("/errorJSON")
     @ResponseBody
