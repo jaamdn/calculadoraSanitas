@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanitas.calculadora.model.Operador;
-import com.sanitas.calculadora.service.CalculadoraService;
+import com.sanitas.calculadora.service.ICalculadoraService;
 
 import io.corp.calculator.TracerImpl;
 
@@ -30,7 +30,7 @@ import io.corp.calculator.TracerImpl;
 public class RestCalculadoraController {
 
 	@Autowired
-	CalculadoraService service;
+	ICalculadoraService service;
 
 	@RequestMapping(value = "/Calculadora/sumar", method = RequestMethod.PUT)
 	@ResponseBody

@@ -4,6 +4,7 @@
 package com.sanitas.calculadora.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import com.sanitas.calculadora.model.Operador;
  */
 
 @Service
-public class CalculadoraService {
+public class CalculadoraServiceImpl implements ICalculadoraService {
 	
 	
 	private static final String SUMAR = "Sumar";
@@ -32,6 +33,7 @@ public class CalculadoraService {
 	 * @param op
 	 * @return Operador
 	 */
+	@Override
 	public Optional<Operador> sumar(Operador op) {
 		op.setOperacion(SUMAR);
 		op.setResultado(op.getOperador1().add(op.getOperador2()));
@@ -45,10 +47,11 @@ public class CalculadoraService {
 	 * @param op
 	 * @return Operador
 	 */
+	@Override
 	public Optional<Operador> restar(Operador op) {
 		
 		op.setOperacion(RESTAR);
-		op.setResultado(op.getOperador1().subtract(op.getOperador2()));
+		op.setResultado(op.getOperador1().subtract(op.getOperador2()).setScale(2));
 		
 		return Optional.ofNullable(op);
 		
@@ -59,6 +62,7 @@ public class CalculadoraService {
 	 * @param op
 	 * @return Operador
 	 */
+	@Override
 	public Optional<Operador> multiplicar(Operador op) {
 		
 		op.setOperacion(MULTIPLICAR);
@@ -73,10 +77,11 @@ public class CalculadoraService {
 	 * @param op
 	 * @return Operador
 	 */
+	@Override
 	public Optional<Operador> dividir(Operador op) {
 		
 		op.setOperacion(DIVIDIR);
-		op.setResultado(op.getOperador1().divide(op.getOperador2()));
+		op.setResultado(op.getOperador1().divide(op.getOperador2(), 10, RoundingMode.HALF_EVEN));
 		
 		return Optional.ofNullable(op);
 		
@@ -87,6 +92,7 @@ public class CalculadoraService {
 	 * @param op
 	 * @return Operador
 	 */
+	@Override
 	public Optional<Operador> raiz(Operador op) {
 		
 		op.setOperacion(RAIZ);
