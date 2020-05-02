@@ -3,8 +3,6 @@
  */
 package com.sanitas.calculadora.service;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -28,9 +26,6 @@ public class CalculadoraService {
 	private static final String MULTIPLICAR = "Multiplicar";
 	private static final String DIVIDIR = "Dividir";
 	private static final String RAIZ = "Raiz";
-	private static final String POTENCIA = "Potencia";
-
-
 
 	/**
 	 * Realiza la operación de sumar.
@@ -38,7 +33,6 @@ public class CalculadoraService {
 	 * @return Operador
 	 */
 	public Optional<Operador> sumar(Operador op) {
-		
 		op.setOperacion(SUMAR);
 		op.setResultado(op.getOperador1().add(op.getOperador2()));
 		
@@ -96,25 +90,10 @@ public class CalculadoraService {
 	public Optional<Operador> raiz(Operador op) {
 		
 		op.setOperacion(RAIZ);
-		op.setResultado(new BigDecimal(Math.sqrt(op.getOperador1().doubleValue())));
+		op.setResultado( BigDecimal.valueOf(Math.sqrt(op.getOperador1().doubleValue())));
 		
 		return Optional.ofNullable(op);
 		
 	}
-	
-//	/**
-//	 * Realiza la operación de potencia.
-//	 * @param op
-//	 * @return Operador
-//	 */
-//	public Optional<Operador> potencia(Operador op) {
-//		
-//		op.setOperacion(POTENCIA);
-//		if (instanceOf(Integer.class) op.getOperador2().intValueExact();
-//		op.setResultado(op.getOperador1().pow(op.getOperador2()));
-//		
-//		return Optional.ofNullable(op);
-//		
-//	}
 
 }

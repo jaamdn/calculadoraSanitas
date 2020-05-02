@@ -33,6 +33,15 @@ public class Operador {
 		this.resultado = resultado;
 	}
 
+	/**
+	 * 
+	 */
+	public Operador() {
+		super();
+	}
+
+
+
 	public String getOperacion() {
 		return operacion;
 	}
