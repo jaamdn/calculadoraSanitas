@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.sanitas.calculadora.model.Operador;
 
+import io.corp.calculator.TracerImpl;
+
 /**
  * @author dvazquez
  * 
@@ -147,12 +149,14 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 				operacion.setOperador1(resultado);
 				optionalResultado = raiz(operacion);
 				break;
+			default:
+				TracerImpl traza = new TracerImpl();
+				traza.trace("No se ha realizado ninguna operación");
 			}
 
 			if (optionalResultado.isPresent()) {
 				resultado = optionalResultado.get().getResultado();
 			}
-
 		}
 
 		return Optional.ofNullable(new Operador(null,null,null,resultado));

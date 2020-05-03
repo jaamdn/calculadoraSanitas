@@ -92,7 +92,7 @@ public class RestCalculadoraController {
 	public ResponseEntity<Operador> calcular(@RequestBody @Valid List<Operador> operaciones) {
 
 			Optional<Operador> operadorResponse = service.calcular(operaciones);
-			return tratarRespuesta(operadorResponse.get(), operadorResponse);
+			return tratarRespuesta(new Operador(), operadorResponse);
 
 
 	}
