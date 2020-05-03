@@ -3,6 +3,7 @@
  */
 package com.sanitas.calculadora.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -81,6 +82,17 @@ public class RestCalculadoraController {
 		Optional<Operador> operadorResponse = service.raiz(operador);
 
 		return tratarRespuesta(operador, operadorResponse);
+
+
+	}
+	
+	
+	@RequestMapping(value = "/Calculadora/calcular", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<Operador> calcular(@RequestBody @Valid List<Operador> operaciones) {
+
+			Optional<Operador> operadorResponse = service.calcular(operaciones);
+			return tratarRespuesta(operadorResponse.get(), operadorResponse);
 
 
 	}

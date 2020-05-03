@@ -4,8 +4,12 @@
 package com.sanitas.calculadora.service;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -99,28 +103,34 @@ class CalculadoraServiceImplTest {
 
 	}
 
-//	/**
-//	 * Test Error parámetros nulos.
-//	 */
-//	@Test
-//	@DisplayName("Test Error de parámetros nulos")
-//	void testINullPointerException() {
-//		Assertions.assertThrows(NullPointerException.class, () -> {
-//			generateOperador("raiz", null, "3");
-//		});
-//
-//	}
+	@Test
+	@DisplayName("Test cálculo varios parámetros")
+	void testCalcular() {
+		List<Operador> operaciones = new ArrayList<Operador>();
+
+		operaciones.add(generateOperador("sumar", "3", null));
+		operaciones.add(generateOperador("restar", "3", null));
+		operaciones.add(generateOperador("restar", "3", null));
+		operaciones.add(generateOperador("multiplicar", "3", null));
+
+		Optional<Operador> opResponse = service.calcular(operaciones);
+		if (opResponse.isPresent()) {
+
+			traza(opResponse.get());
+			assertTrue(opResponse.get().getResultado() != null);
+		} else {
+			fail();
+		}
+	}
 
 	/**
 	 * Metodo que inicializa el objeto operacion.
+	 * 
 	 * @return objeto Operador
 	 */
-	private Operador generateOperador(String operacion,String op1,String op2) {
-		return new Operador(operacion,
-				(op1 !=null ? new BigDecimal(op1):null),
-				(op2 !=null ? new BigDecimal(op2):null),
-				null);
-		//return new Operador(operacion,new BigDecimal(op1), new BigDecimal(op2),null);
+	private Operador generateOperador(String operacion, String op1, String op2) {
+		return new Operador(operacion, (op1 != null ? new BigDecimal(op1) : null),
+				(op2 != null ? new BigDecimal(op2) : null), null);
 	}
 
 	/**
