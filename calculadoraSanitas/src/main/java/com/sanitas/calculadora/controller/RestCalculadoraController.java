@@ -4,7 +4,6 @@
 package com.sanitas.calculadora.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -33,67 +32,62 @@ public class RestCalculadoraController {
 	@Autowired
 	ICalculadoraService service;
 
-	@RequestMapping(value = "/Calculadora/sumar", method = RequestMethod.PUT)
+	@RequestMapping(value = "/Calculadora/sumar", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Operador> sumar(@RequestBody @Valid Operador operador) {
 
-		Optional<Operador> operadorResponse = service.sumar(operador);
-		
+		Operador operadorResponse = service.sumar(operador);
+
 		return tratarRespuesta(operador, operadorResponse);
 
 	}
 
-	@RequestMapping(value = "/Calculadora/restar", method = RequestMethod.PUT)
+	@RequestMapping(value = "/Calculadora/restar", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Operador> restar(@RequestBody @Valid Operador operador) {
 
-		Optional<Operador> operadorResponse = service.restar(operador);
+		Operador operadorResponse = service.restar(operador);
 
 		return tratarRespuesta(operador, operadorResponse);
 
 	}
 
-	@RequestMapping(value = "/Calculadora/multiplicar", method = RequestMethod.PUT)
+	@RequestMapping(value = "/Calculadora/multiplicar", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Operador> multiplicar(@RequestBody @Valid Operador operador) {
 
-		Optional<Operador> operadorResponse = service.multiplicar(operador);
+		Operador operadorResponse = service.multiplicar(operador);
 
 		return tratarRespuesta(operador, operadorResponse);
 
-
 	}
 
-	@RequestMapping(value = "/Calculadora/dividir", method = RequestMethod.PUT)
+	@RequestMapping(value = "/Calculadora/dividir", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Operador> dividir(@RequestBody @Valid Operador operador) {
 
-		Optional<Operador> operadorResponse = service.dividir(operador);
+		Operador operadorResponse = service.dividir(operador);
 
 		return tratarRespuesta(operador, operadorResponse);
 
-
 	}
 
-	@RequestMapping(value = "/Calculadora/raiz", method = RequestMethod.PUT)
+	@RequestMapping(value = "/Calculadora/raiz", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Operador> raiz(@RequestBody @Valid Operador operador) {
 
-		Optional<Operador> operadorResponse = service.raiz(operador);
+		Operador operadorResponse = service.raiz(operador);
 
 		return tratarRespuesta(operador, operadorResponse);
 
-
 	}
-	
-	
-	@RequestMapping(value = "/Calculadora/calcular", method = RequestMethod.PUT)
+
+	@RequestMapping(value = "/Calculadora/calcular", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Operador> calcular(@RequestBody @Valid List<Operador> operaciones) {
 
-			Optional<Operador> operadorResponse = service.calcular(operaciones);
-			return tratarRespuesta(new Operador(), operadorResponse);
-
+		Operador operadorResponse = service.calcular(operaciones);
+		return tratarRespuesta(new Operador(), operadorResponse);
 
 	}
 
@@ -102,14 +96,14 @@ public class RestCalculadoraController {
 	 * @param operadorResponse
 	 * @return
 	 */
-	private ResponseEntity<Operador> tratarRespuesta(Operador operador, Optional<Operador> operadorResponse) {
-		
+	private ResponseEntity<Operador> tratarRespuesta(Operador operador, Operador operadorResponse) {
+
 		ResponseEntity<Operador> responseEntity;
-		TracerImpl traza =new TracerImpl();
-		
-		if (operadorResponse.isPresent()) {
-			responseEntity = new ResponseEntity<>(operadorResponse.get(), HttpStatus.OK);
-			traza.trace(operadorResponse.get());
+		TracerImpl traza = new TracerImpl();
+
+		if (operadorResponse != null) {
+			responseEntity = new ResponseEntity<>(operadorResponse, HttpStatus.OK);
+			traza.trace(operadorResponse);
 		} else {
 			responseEntity = new ResponseEntity<>(operador, HttpStatus.INTERNAL_SERVER_ERROR);
 			traza.trace(operador);

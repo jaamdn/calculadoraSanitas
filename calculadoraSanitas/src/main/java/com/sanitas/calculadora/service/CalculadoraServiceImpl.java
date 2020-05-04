@@ -6,7 +6,6 @@ package com.sanitas.calculadora.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -29,6 +28,7 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	private static final String MULTIPLICAR = "multiplicar";
 	private static final String DIVIDIR = "dividir";
 	private static final String RAIZ = "raiz";
+	private static final String CALCULAR = "calcular";
 
 	/**
 	 * Realiza la operación de sumar.
@@ -37,11 +37,11 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	 * @return Operador
 	 */
 	@Override
-	public Optional<Operador> sumar(Operador op) {
+	public Operador sumar(Operador op) {
 		op.setOperacion(SUMAR);
 		op.setResultado(op.getOperador1().add(op.getOperador2()));
 
-		return Optional.ofNullable(op);
+		return op;
 
 	}
 
@@ -52,12 +52,12 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	 * @return Operador
 	 */
 	@Override
-	public Optional<Operador> restar(Operador op) {
+	public Operador restar(Operador op) {
 
 		op.setOperacion(RESTAR);
 		op.setResultado(op.getOperador1().subtract(op.getOperador2()).setScale(2));
 
-		return Optional.ofNullable(op);
+		return op;
 
 	}
 
@@ -68,12 +68,12 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	 * @return Operador
 	 */
 	@Override
-	public Optional<Operador> multiplicar(Operador op) {
+	public Operador multiplicar(Operador op) {
 
 		op.setOperacion(MULTIPLICAR);
 		op.setResultado(op.getOperador1().multiply(op.getOperador2()));
 
-		return Optional.ofNullable(op);
+		return op;
 
 	}
 
@@ -84,12 +84,12 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	 * @return Operador
 	 */
 	@Override
-	public Optional<Operador> dividir(Operador op) {
+	public Operador dividir(Operador op) {
 
 		op.setOperacion(DIVIDIR);
 		op.setResultado(op.getOperador1().divide(op.getOperador2(), 10, RoundingMode.HALF_EVEN));
 
-		return Optional.ofNullable(op);
+		return op;
 
 	}
 
@@ -100,12 +100,12 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	 * @return Operador
 	 */
 	@Override
-	public Optional<Operador> raiz(Operador op) {
+	public Operador raiz(Operador op) {
 
 		op.setOperacion(RAIZ);
 		op.setResultado(BigDecimal.valueOf(Math.sqrt(op.getOperador1().doubleValue())));
 
-		return Optional.ofNullable(op);
+		return op;
 
 	}
 
@@ -115,10 +115,10 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	 * @param operaciones
 	 * @return Operador
 	 */
-	public Optional<Operador> calcular(List<Operador> operaciones) {
+	public Operador calcular(List<Operador> operaciones) {
 
 		BigDecimal resultado = new BigDecimal(0);
-		Optional<Operador> optionalResultado = null;
+		Operador opResultado = null;
 
 		for (Operador operacion : operaciones) {
 
@@ -127,39 +127,38 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 			case SUMAR:
 				operacion.setOperador2(operacion.getOperador1());
 				operacion.setOperador1(resultado);
-				optionalResultado = sumar(operacion);
+				opResultado = sumar(operacion);
 				break;
 			case RESTAR:
 				operacion.setOperador2(operacion.getOperador1());
 				operacion.setOperador1(resultado);
-				optionalResultado = restar(operacion);
+				opResultado = restar(operacion);
 				break;
 			case MULTIPLICAR:
 				operacion.setOperador2(operacion.getOperador1());
 				operacion.setOperador1(resultado);
-				optionalResultado = multiplicar(operacion);
+				opResultado = multiplicar(operacion);
 				break;
 			case DIVIDIR:
 				operacion.setOperador2(operacion.getOperador1());
 				operacion.setOperador1(resultado);
-				optionalResultado = dividir(operacion);
+				opResultado = dividir(operacion);
 				break;
 			case RAIZ:
 				operacion.setOperador2(operacion.getOperador1());
 				operacion.setOperador1(resultado);
-				optionalResultado = raiz(operacion);
+				opResultado = raiz(operacion);
 				break;
 			default:
 				TracerImpl traza = new TracerImpl();
 				traza.trace("No se ha realizado ninguna operación");
 			}
 
-			if (optionalResultado.isPresent()) {
-				resultado = optionalResultado.get().getResultado();
+			if (opResultado.getResultado() != null) {
+				resultado = opResultado.getResultado();
 			}
 		}
-
-		return Optional.ofNullable(new Operador(null,null,null,resultado));
+		return new Operador(CALCULAR,null,null,resultado);
 	}
 
 }

@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -113,11 +112,10 @@ class CalculadoraServiceImplTest {
 		operaciones.add(generateOperador("restar", "3", null));
 		operaciones.add(generateOperador("multiplicar", "3", null));
 
-		Optional<Operador> opResponse = service.calcular(operaciones);
-		if (opResponse.isPresent()) {
-
-			traza(opResponse.get());
-			assertTrue(opResponse.get().getResultado() != null);
+		Operador opResponse = service.calcular(operaciones);
+		if (opResponse != null) {
+			traza(opResponse);
+			assertTrue(opResponse.getResultado() != null);
 		} else {
 			fail();
 		}
