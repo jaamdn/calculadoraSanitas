@@ -15,7 +15,7 @@
 	<name>calculadoraSanitas</name>
 	<description>Calculadora sanitas</description>
 
-	<properties>
+	<properties> 
 		<java.version>1.8</java.version>
 	</properties>
 
