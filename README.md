@@ -120,4 +120,11 @@ http://localhost:8080/Calculadora/calcular
 	"resultado":"0"
 	}
 ]
+<<<<<<< Upstream, based on origin/master
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
+>>>>>>> 5ba1323 eliminación ficheros y configuración pom
