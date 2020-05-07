@@ -39,7 +39,8 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	@Override
 	public Operador sumar(Operador op) {
 		op.setOperacion(SUMAR);
-		op.setResultado(op.getOperador1().add(op.getOperador2()));
+
+		op.setResultado(op.getOperador1().add(op.getOperador2() != null ? op.getOperador2() : new BigDecimal(0)));
 
 		return op;
 
@@ -55,7 +56,8 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	public Operador restar(Operador op) {
 
 		op.setOperacion(RESTAR);
-		op.setResultado(op.getOperador1().subtract(op.getOperador2()).setScale(2));
+		op.setResultado(op.getOperador1().subtract(op.getOperador2() != null ? op.getOperador2() : new BigDecimal(0))
+				.setScale(2));
 
 		return op;
 
@@ -71,7 +73,7 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	public Operador multiplicar(Operador op) {
 
 		op.setOperacion(MULTIPLICAR);
-		op.setResultado(op.getOperador1().multiply(op.getOperador2()));
+		op.setResultado(op.getOperador1().multiply(op.getOperador2() != null ? op.getOperador2() : new BigDecimal(0)));
 
 		return op;
 
@@ -87,7 +89,8 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 	public Operador dividir(Operador op) {
 
 		op.setOperacion(DIVIDIR);
-		op.setResultado(op.getOperador1().divide(op.getOperador2(), 10, RoundingMode.HALF_EVEN));
+		op.setResultado(op.getOperador1().divide(op.getOperador2() != null ? op.getOperador2() : new BigDecimal(0), 10,
+				RoundingMode.HALF_EVEN));
 
 		return op;
 
@@ -123,6 +126,7 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 		for (Operador operacion : operaciones) {
 
 			// ponemos el operador1 en el operador 2 para poner el resultado en el operador1
+			// y realizar la operación
 			switch (operacion.getOperacion()) {
 			case SUMAR:
 				operacion.setOperador2(operacion.getOperador1());
@@ -158,7 +162,7 @@ public class CalculadoraServiceImpl implements ICalculadoraService {
 				resultado = opResultado.getResultado();
 			}
 		}
-		return new Operador(CALCULAR,null,null,resultado);
+		return new Operador(CALCULAR, null, null, resultado);
 	}
 
 }
