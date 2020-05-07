@@ -17,7 +17,7 @@ El Objeto de entrada llamado Operador se utiliza para introducir los datos que s
 
 Para la lógica y realización de la operación,he creado un solo service para simplificar el problema, se implementa de una interfce y la lógica de todo el microservicio esta en esta capa,si fuera necesaria una bbdd se podria haber hecho una interfce por ejemplo de jpa y que se realizaran las operaciones básicas heredadas y se devolverian al controller.
 
-En la capa de test he implementado un test por cada operación mas uno de errores con un parámetro erróneo, los test utilizan la API Tracer para imprimir el resultado por pantalla.
+En la capa de test he implementado varios test unitarios testeando valores grandes,pequeños, nulos u operaciones con decimales o negativos,también test erróneos provacando nulos o erroes aritméticos, los test utilizan la API Tracer para imprimir el resultado por pantalla.
 
 //Instalación
 
@@ -30,7 +30,7 @@ Se puede ver el API completo con el servidor arrancado en esta url http://localh
 
 // Pruebas
 
-Las pruebas se pueden hacer mediante postman con los siguientes parámetros de entrada
+Las pruebas se pueden hacer mediante postman con los siguientes parámetros de entrada tomados como ejemplos
 
 #Sumar
 
