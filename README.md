@@ -1,7 +1,7 @@
 # calculadoraSanitas
 Calculadora rest de Sanitas
 
-He planteado el problema creando un solo controller con varios métodos y escuchando solo con put, ya que lo que se plantea es realizar una operación sencilla y que nos devuelva un resultado.
+He planteado el problema creando un solo controller con varios métodos y escuchando solo con get, ya que lo que se plantea es realizar una operación sencilla y que nos devuelva un resultado.
 
 El Objeto de entrada llamado Operador se utiliza para introducir los datos que se quieren calcular, tendrá formato simple para una operación y de tipo array para el cálculo, el objeto está compuesto por :
 
